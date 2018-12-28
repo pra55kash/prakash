@@ -3,9 +3,7 @@
 <suite name="Suite">
   <test  name="Test">
     <classes>
-      <!-- <class name="RedBusBooking.RedBus.TestRedBus"/> -->
-      <class name="cucumber.CucuRedBusRunner"/>
-      <!-- <class name="RedBusBooking.RedBus.AppTest"/> -->
+      <class name="RedBusBooking.RedBus.TestRedBus"/> 
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
