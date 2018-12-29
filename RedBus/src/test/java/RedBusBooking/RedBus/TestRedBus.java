@@ -16,6 +16,7 @@ public class TestRedBus extends BaseClass{
 
 	public void searchBuses(String src,String dst,String date) {
 	System.out.println(src+"   "+dst+"  111 "+date);
+	 log = report.startTest("searchBuses");
 		
 		redBus.setFromTextField(src);
 		redBus.setToTextField(dst);
@@ -34,7 +35,7 @@ public class TestRedBus extends BaseClass{
 
 public void searchBuses1(String src,String dst,String date) {
 System.out.println(src+"   "+dst+"  222 "+date);
-	
+log = report.startTest("searchBuses1");
 	redBus.setFromTextField(src);
 	redBus.setToTextField(dst);
 	redBus.setOnwardDateTextField(date);

@@ -4,7 +4,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -20,32 +22,40 @@ public class BaseClass {
 	public RedBus redBus;
 	public SearchAfter searchAfter;
 	BrowserFactory factory=new BrowserFactory();
-	ExtentReports report;
+	public ExtentReports report;
 	public ExtentTest log;
+	
+	@BeforeTest
+	public void startReport(){
+		System.out.println(System.getProperty("user.dir"));
+		System.out.println(System.getProperty("user.home"));
+		//report = new ExtentReports ("./../../test-output/xtentReport.html", true);
+		report = new ExtentReports (System.getProperty("user.dir")+"/test-output/xtentReport1.html", true);
+		 
+		 }
 	@BeforeMethod
 	public void openbrowser() {
-		report=new ExtentReports(System.getProperty("user.dir") +"\\src\\test\\reports\\STMExtentReport.html");
 		System.out.println("before method");
-		 log = report.startTest("TestRedBus");
 		driver=factory.getBrowser();
-		log.log(LogStatus.INFO, "Browser Opened");
 		driver.manage().window().maximize();
-		log.log(LogStatus.INFO, "window Maximized");
 		driver.get("https://www.redbus.in/");
-		log.log(LogStatus.INFO, "Url entered");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		redBus=PageFactory.initElements(driver, RedBus.class);
 		searchAfter=PageFactory.initElements(driver, SearchAfter.class);
-		log.log(LogStatus.INFO, "Page created");
 				
 	}
 	
 	@AfterMethod
 	public void closeBrowser() {
 		
-		
-		log.log(LogStatus.INFO, "closing browser");
-		report.flush();
+		report.endTest(log);
 		driver.quit();
+	}
+	
+	@AfterTest
+public void close() {
+		
+		report.flush();
+report.close();
 	}
 }

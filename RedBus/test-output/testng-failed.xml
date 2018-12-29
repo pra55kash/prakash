@@ -6,7 +6,6 @@
       <class name="RedBusBooking.RedBus.TestRedBus">
         <methods>
           <include name="openbrowser"/>
-          <include name="searchBuses1" invocation-numbers="0"/>
           <include name="searchBuses" invocation-numbers="0"/>
           <include name="closeBrowser"/>
         </methods>
